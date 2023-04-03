@@ -49,6 +49,7 @@ class Home : Fragment() {
                 db.reference.child("leaderboard").child(user.uid).child("bestscore").get().addOnSuccessListener { best->
                     binding.cookieText.text = getString(R.string.cookietext)+ cookie.value.toString()
                     binding.highscoreText.text = getString(R.string.highscoretext)+ best.value.toString()
+                    Log.d(TAG, "updateUi: " + getString(R.string.highscoretext)+ best.value.toString())
                 }
 
             }
