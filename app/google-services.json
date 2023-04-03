@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "645456838448",
+    "firebase_url": "https://cookietwo-5b413-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "cookietwo-5b413",
+    "storage_bucket": "cookietwo-5b413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645456838448:android:fec77762ee4e4efcb2d2f5",
+        "android_client_info": {
+          "package_name": "com.cy.cookietwo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645456838448-18nmdkcv7ttfpdjugmnimvta8108dhr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtvr-0dSAnfBhZAKOR55vnZP5vxdPrfrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645456838448-18nmdkcv7ttfpdjugmnimvta8108dhr1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

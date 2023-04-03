@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.cy.cookietwo.splashscreen.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_splashScreen_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_splashScreen_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.cy.cookietwo.home.Home"
+        android:label="fragment_home2"
+        tools:layout="@layout/fragment_home2" >
+        <action
+            android:id="@+id/action_home2_to_profile_page"
+            app:destination="@id/profile_page" />
+        <action
+            android:id="@+id/action_home2_to_otherProfilePage"
+            app:destination="@id/otherProfilePage" />
+        <action
+            android:id="@+id/action_home2_to_shop"
+            app:destination="@id/shop" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.cy.cookietwo.login.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.cy.cookietwo.register.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile_page"
+        android:name="com.cy.cookietwo.profile.myprofile.ProfilePage"
+        android:label="fragment_profile_page"
+        tools:layout="@layout/fragment_profile_page" >
+        <action
+            android:id="@+id/action_profile_page_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/otherProfilePage"
+        android:name="com.cy.cookietwo.profile.otherprofile.OtherProfilePage"
+        android:label="OtherProfilePage" >
+        <action
+            android:id="@+id/action_otherProfilePage_to_home2"
+            app:destination="@id/home2" />
+        <argument
+            android:name="userId"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/shop"
+        android:name="com.cy.cookietwo.shop.Shop"
+        android:label="fragment_shop"
+        tools:layout="@layout/fragment_shop" >
+        <action
+            android:id="@+id/action_shop_to_home2"
+            app:destination="@id/home2" />
+        <argument
+            android:name="cookieAmount"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+    </fragment>
+</navigation>

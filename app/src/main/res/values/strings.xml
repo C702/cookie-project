@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CookieTwo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Your email is wrong, please re-try with a working email</string>
+    <string name="password">For your own safety your password has to be longer than 6 characters please enter a longer password.</string>
+    <string name="wlc">Welcome</string>
+    <string name="wlcbck">Welcome Back</string>
+    <string name="inncrt">Incorrect password or username</string>
+    <string name="cookietext">"Your cookie amount is "</string>
+    <string name="highscoretext">"Your highscore is "</string>
+    <string name="naming">"Name: "</string>
+    <string name="Cookkkies">"Cookies: "</string>
+    <string name="Highestt">"Highest Cookie: "</string>
+    <string name="changelogin">Want to Login? Click Here!</string>
+    <string name="changesign">Want to Sign Up? Click Here!</string>
+    <string name="shop">Shop</string>
+    <string name="vipshop">VIP - 950 Cookies - \"The only way of feeling extra ordinary!\", this amazing feature provides you the theme of VIP where the text and cookie photo changes into a unique one just for you.</string>
+    <string name="urprofil">Profile Information:</string>
+    <string name="namingone">Profile Page Information Of </string>
+    <string name="twodot">:</string>
+    <string name="space"></string>
+    <string name="checkbox">Remember Me</string>
+    <string name="splashscreenunable">There has been technical problems while automatically signing in with your given email and password please check if your email is working or if you have been banned.</string>
+</resources>
