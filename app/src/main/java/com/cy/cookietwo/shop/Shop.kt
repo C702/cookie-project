@@ -63,18 +63,17 @@ class Shop : Fragment() {
         adapter = Shoprecyclerview(object : BuyClickListener{
             override fun isBuyClicked(item: ShopModel) {
                 if (item.value <= cookieCount) {
-                    cookieCount = cookieCount-item.value
                     val name = item.name
                     auth.currentUser?.let { user ->
                          db.reference.child("leaderboard").child(user.uid).child("shop").get().addOnSuccessListener {
                              var numbertwo = it.child(name.toString()).value.toString().toInt()
                             Log.d(TAG, "isBuyClicked: " + it.child(name.toString()).value.toString().toInt())
-                            db.reference.child("leaderboard").child(user.uid).child("highscore").setValue(cookieCount)
+                             val newCookieCount = cookieCount-item.value
+                            db.reference.child("leaderboard").child(user.uid).child("highscore").setValue(newCookieCount)
                             db.reference.child("leaderboard").child(user.uid).child("shop").child(item.name.toString()).setValue(numbertwo.toString().toInt()+1)
-                        }
-
+                             getCookie()
+                         }
                     }
-                getCookie()
                 }
                 else {
                     Toast.makeText(context, "Insufficent amount of cookies", Toast.LENGTH_SHORT).show()
@@ -89,12 +88,23 @@ class Shop : Fragment() {
         val list = arrayListOf<ShopModel>()
         db.reference.child("shop").get().addOnSuccessListener {
             for (child in it.children) {
+                var icon: String? = null
+                var colour: String? = null
+                child.child("icon").value?.let {
+                    icon = it.toString()
+                }
+                child.child("colour").value?.let {
+                    colour = it.toString()
+                }
                 list.add(
                     ShopModel(
                         id = child.child("id").value.toString().toInt(),
                         name = child.child("name").value.toString(),
                         text = child.child("text").value.toString(),
-                        value = child.child("value").value.toString().toInt()
+                        value = child.child("value").value.toString().toInt(),
+                        textColour = colour,
+                        userName = auth.currentUser?.email.toString(),
+                        icon = icon
                     )
                 )
             }

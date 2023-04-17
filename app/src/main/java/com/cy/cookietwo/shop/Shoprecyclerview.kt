@@ -1,10 +1,12 @@
 package com.cy.cookietwo.shop
 
+import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.makeText
@@ -38,12 +40,27 @@ class Shoprecyclerview(val listener: BuyClickListener
             holder.buy.setOnClickListener {
                 listener.isBuyClicked(this)
             }
+            if (this.textColour != null) {
+                holder.exampleText.text = this.userName
+                holder.exampleText.setTextColor(Color.parseColor(this.textColour))
+            }
+            if (this.icon != null) {
+                holder.exampleText.text = "Example: " + this.userName
+                if (this.icon == "moon") {
+                    holder.exampleImage.setImageResource(R.drawable.ic_moon)
+                }
+                if (this.icon == "star") {
+                    holder.exampleImage.setImageResource(R.drawable.ic_star)
+                }
+            }
         }
     }
 
     inner class MatchViewHolder(iv: View) : RecyclerView.ViewHolder(iv) {
         val info: TextView = iv.findViewById(R.id.textView14)
         val price: TextView = iv.findViewById(R.id.textView15)
+        val exampleText: TextView = iv.findViewById(R.id.exampleText)
+        val exampleImage: ImageView = iv.findViewById(R.id.exampleImage)
         val buy: Button = iv.findViewById(R.id.button4)
     }
 }

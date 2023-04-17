@@ -22,4 +22,8 @@
     <string name="space"></string>
     <string name="checkbox">Remember Me</string>
     <string name="splashscreenunable">There has been technical problems while automatically signing in with your given email and password please check if your email is working or if you have been banned.</string>
+    <string name="VIPYES">"VIP On? : False"</string>
+    <string name="VIPNO">"VIP On? : True"</string>
+    <string name="RebirthProfile">"Rebirths: "</string>
+    <string name="AdderProfile">"Adder Amount: "</string>
 </resources>
