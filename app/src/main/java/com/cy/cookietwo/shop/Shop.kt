@@ -63,9 +63,10 @@ class Shop : Fragment() {
         adapter = Shoprecyclerview(object : BuyClickListener{
             override fun isBuyClicked(item: ShopModel) {
                 if (item.value <= cookieCount) {
-                    val name = item.name
+                    val name = item.name?.lowercase()
                     auth.currentUser?.let { user ->
                          db.reference.child("leaderboard").child(user.uid).child("shop").get().addOnSuccessListener {
+                             Log.d(TAG, "isBuyClicked: " + name.toString())
                              var numbertwo = it.child(name.toString()).value.toString().toInt()
                             Log.d(TAG, "isBuyClicked: " + it.child(name.toString()).value.toString().toInt())
                              val newCookieCount = cookieCount-item.value

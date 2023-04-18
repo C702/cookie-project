@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -41,10 +42,13 @@ class Shoprecyclerview(val listener: BuyClickListener
                 listener.isBuyClicked(this)
             }
             if (this.textColour != null) {
+                holder.exampleText.isVisible = true
                 holder.exampleText.text = this.userName
                 holder.exampleText.setTextColor(Color.parseColor(this.textColour))
             }
             if (this.icon != null) {
+                holder.exampleText.isVisible = true
+                holder.exampleImage.isVisible = true
                 holder.exampleText.text = "Example: " + this.userName
                 if (this.icon == "moon") {
                     holder.exampleImage.setImageResource(R.drawable.ic_moon)
@@ -52,6 +56,9 @@ class Shoprecyclerview(val listener: BuyClickListener
                 if (this.icon == "star") {
                     holder.exampleImage.setImageResource(R.drawable.ic_star)
                 }
+            }
+            else{
+                holder.exampleImage.isVisible = false
             }
         }
     }
