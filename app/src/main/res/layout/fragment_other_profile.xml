@@ -10,18 +10,16 @@
         style="@style/bjk"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/back"
         android:textAllCaps="false"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="@dimen/xxxxxxxxxxx_large_size_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -30,10 +28,9 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hes"
         android:textStyle="bold"
         android:textColor="@color/logocolour"
-        android:textSize="26sp"
+        android:textSize="@dimen/xx_large_size_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,10 +38,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shopRw"
         android:layout_width="0dp"
-        android:layout_height="199dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="@dimen/other_profile_rw_height"
+        android:layout_marginTop="@dimen/x_large_size_margin"
+        android:layout_marginStart="@dimen/x_large_size_margin"
+        android:layout_marginEnd="@dimen/x_large_size_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />

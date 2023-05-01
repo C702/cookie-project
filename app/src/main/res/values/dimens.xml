@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text Sizes -->
+
+    <dimen name="x_large_size_text">22sp</dimen>
+    <dimen name="small_size_text">10sp</dimen>
+    <dimen name="medium_size_text">14sp</dimen>
+    <dimen name="x_medium_size_text">18sp</dimen>
+    <dimen name="large_size_text">19sp</dimen>
+    <dimen name="xx_large_size_text">26sp</dimen>
+
+    <!--  -->
+
+    <!-- Margin Sizes -->
+
+    <dimen name="medium_size_margin">10dp</dimen>
+    <dimen name="x_small_size_margin">5dp</dimen>
+    <dimen name="small_size_margin">8dp</dimen>
+    <dimen name="large_size_margin">15dp</dimen>
+    <dimen name="x_large_size_margin">20dp</dimen>
+    <dimen name="xx_large_size_margin">40dp</dimen>
+    <dimen name="xxxxx_large_size_margin">70dp</dimen>
+    <dimen name="xxx_large_size_margin">50dp</dimen>
+    <dimen name="xxxxxxxxxxx_large_size_margin">200dp</dimen>
+
+    <!--  -->
+
+    <!-- Width and Height Sizes -->
+
+    <dimen name="cookie_width_size">300dp</dimen>
+    <dimen name="cookie_height_size">200dp</dimen>
+    <dimen name="profile_button_width_size">50dp</dimen>
+    <dimen name="profile_button_height_size">50dp</dimen>
+    <dimen name="home_rw_height_size">100dp</dimen>
+    <dimen name="logo_width">150dp</dimen>
+    <dimen name="logo_height">200dp</dimen>
+    <dimen name="other_profile_rw_height">200dp</dimen>
+</resources>

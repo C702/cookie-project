@@ -43,13 +43,13 @@ class Login : Fragment() {
     private fun checkrememberme() {
         if (binding.rememberMe.isChecked) {
             sharedPreferences.setNumber(2)
-            sharedPreferences.setEmail(binding.edittext4.text.toString())
-            sharedPreferences.setPassword(binding.edittext5.text.toString())
+            sharedPreferences.setEmail(binding.emailText.text.toString())
+            sharedPreferences.setPassword(binding.passwordText.text.toString())
         }
     }
 
     private fun checkView(){
-        auth.signInWithEmailAndPassword(binding.edittext4.text.toString(), binding.edittext5.text.toString()
+        auth.signInWithEmailAndPassword(binding.emailText.text.toString(), binding.passwordText.text.toString()
         ).addOnCompleteListener {
             if (it.isSuccessful) {
                 checkrememberme()
@@ -66,10 +66,10 @@ class Login : Fragment() {
     }
 
     private fun clickListener() {
-        binding.button2.setOnClickListener {
+        binding.loginButton.setOnClickListener {
             checkView()
         }
-        binding.textView12.setOnClickListener {
+        binding.changer.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_login_to_register)
         }
     }

@@ -26,4 +26,23 @@
     <string name="VIPNO">"VIP On? : True"</string>
     <string name="RebirthProfile">"Rebirths: "</string>
     <string name="AdderProfile">"Adder Amount: "</string>
+    <string name="PINKYES">Pink Bought?: True</string>
+    <string name="PINKNO">Pink Bought?: False</string>
+    <string name="REDYES">Red Bought?: True</string>
+    <string name="REDNO">Red Bought?: False</string>
+    <string name="STARYES">Star Bought?: True</string>
+    <string name="STARNO">Star Bought?: False</string>
+    <string name="MOONNO">Moon Bought?: False</string>
+    <string name="MOONYES">Moon Bought?: True</string>
+    <string name="YELLOWYES">Yellow Bought?: True</string>
+    <string name="YELLOWNO">Yellow Bought?: False</string>
+    <string name="GREENYES">Green Bought?: True</string>
+    <string name="GREENNO">Green Bought?: False</string>
+    <string name="leaderboardtext">Leaderboard</string>
+    <string name="motivation_text">Want to be the best in the leaderboard? well then you can start by cliciking cookies!</string>
+    <string name="shop_text">Shop</string>
+    <string name="email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="login_text">Login</string>
+    <string name="back">Back</string>
 </resources>
