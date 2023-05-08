@@ -1,5 +1,6 @@
 package com.cy.cookietwo.register
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import com.cy.cookietwo.HomeActivity
 import com.cy.cookietwo.R
 import com.cy.cookietwo.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.ktx.auth
@@ -40,7 +42,10 @@ class Register : Fragment() {
                 it.result.user?.uid
                 db.reference.child("users").child(it.result.user?.uid.toString()).setValue(UserDetail(name = binding.userNameText.text.toString(), email = binding.emailText.text.toString()))
                 db.reference.child("leaderboard").child(it.result.user?.uid.toString()).setValue(UserCookieDetail(name = binding.userNameText.text.toString(), bestscore = 0, highscore = 0, shop = Shop()))
-                Navigation.findNavController(binding.root).navigate(R.id.action_register_to_home2)
+                val intent = Intent(activity, HomeActivity::class.java)
+                activity?.startActivity(intent)
+                activity?.finish()
+                //Navigation.findNavController(binding.root).navigate(R.id.action_register_to_home2)
                 Toast.makeText(context, getString(R.string.wlc), Toast.LENGTH_SHORT).show()
                 println("Success!!")
             }
@@ -73,7 +78,7 @@ class Register : Fragment() {
             checkView()
         }
         binding.loginChange.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_register_to_login)
+            Navigation.findNavController(binding.root).navigate(R.id.action_register2_to_login2)
         }
     }
 }

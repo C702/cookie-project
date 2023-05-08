@@ -43,12 +43,12 @@ class ProfilePage : Fragment() {
                         .addOnSuccessListener { name ->
                             db.reference.child("leaderboard").child(user.uid).child("bestscore")
                                 .get().addOnSuccessListener { best ->
-                                binding.textView9.text =
+                                /*binding.textView9.text =
                                     getString(R.string.naming) + name.value.toString()
                                 binding.textView10.text =
                                     getString(R.string.Cookkkies) + cookie.value.toString()
                                 binding.textView11.text =
-                                    getString(R.string.Highestt) + cookie.value.toString()
+                                    getString(R.string.Highestt) + cookie.value.toString()*/
                             }
 
                         }

@@ -3,23 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/home2">
 
-    <fragment
-        android:id="@+id/splashScreen"
-        android:name="com.cy.cookietwo.splashscreen.SplashScreen"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashScreen_to_login"
-            app:destination="@id/login" />
-        <action
-            android:id="@+id/action_splashScreen_to_register"
-            app:destination="@id/register" />
-        <action
-            android:id="@+id/action_splashScreen_to_home2"
-            app:destination="@id/home2" />
-    </fragment>
     <fragment
         android:id="@+id/home2"
         android:name="com.cy.cookietwo.home.Home"
@@ -34,30 +19,6 @@
         <action
             android:id="@+id/action_home2_to_shop"
             app:destination="@id/shop" />
-    </fragment>
-    <fragment
-        android:id="@+id/login"
-        android:name="com.cy.cookietwo.login.Login"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_login_to_home2"
-            app:destination="@id/home2" />
-        <action
-            android:id="@+id/action_login_to_register"
-            app:destination="@id/register" />
-    </fragment>
-    <fragment
-        android:id="@+id/register"
-        android:name="com.cy.cookietwo.register.Register"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_register_to_home2"
-            app:destination="@id/home2" />
-        <action
-            android:id="@+id/action_register_to_login"
-            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/profile_page"
