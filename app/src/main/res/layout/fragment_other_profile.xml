@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/backButtonOtherProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/titleOtherProfilePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -35,8 +35,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:layout_marginStart="@dimen/small_size_margin"
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/logocolour"
+        android:textSize="@dimen/xx_large_size_text"
+        app:layout_constraintStart_toEndOf="@id/titleOtherProfilePage"
+        app:layout_constraintTop_toTopOf="@id/titleOtherProfilePage"
+        app:layout_constraintTop_toBottomOf="@id/titleOtherProfilePage"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/shopRw"
+        android:id="@+id/otherProfilePageRW"
         android:layout_width="0dp"
         android:layout_height="@dimen/other_profile_rw_height"
         android:layout_marginTop="@dimen/x_large_size_margin"
@@ -44,5 +56,15 @@
         android:layout_marginEnd="@dimen/x_large_size_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/titleOtherProfilePage" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:visibility="gone"
+        android:layout_width="@dimen/icon_width"
+        android:layout_height="@dimen/icon_height"
+        app:srcCompat="@drawable/cookie4k"
+        app:layout_constraintTop_toTopOf="@id/userName"
+        app:layout_constraintStart_toEndOf="@id/userName"
+        app:layout_constraintTop_toBottomOf="@id/userName"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

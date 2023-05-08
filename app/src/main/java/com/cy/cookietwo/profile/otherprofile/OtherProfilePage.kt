@@ -1,10 +1,13 @@
 package com.cy.cookietwo.profile.otherprofile
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -36,10 +39,44 @@ class OtherProfilePage : Fragment() {
         getShopData()
     }
 
+    private fun setIcon( moon: Boolean, star: Boolean) {
+        if (moon) {
+            binding.icon.isVisible = true
+            binding.icon.setImageResource(R.drawable.ic_moon)
+        }
+        if (star) {
+            binding.icon.isVisible = true
+            binding.icon.setImageResource(R.drawable.ic_star)
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private fun setUserName(
+        userName: String,
+        green: Boolean,
+        yellow: Boolean,
+        red: Boolean,
+        pink: Boolean
+    ) {
+        if (green) {
+            binding.userName.setTextColor(Color.parseColor("#2DD2A2"))
+        }
+        else if (yellow) {
+            binding.userName.setTextColor(Color.parseColor("#ecdc13"))
+        }
+        else if (red) {
+            binding.userName.setTextColor(Color.parseColor("#D22D5D"))
+        }
+        else if (pink) {
+            binding.userName.setTextColor(Color.parseColor("#FFC0CB"))
+        }
+        binding.userName.text = userName
+    }
+
     private fun initrecyclerview() {
         adapter = ShopRecyclerView(context)
-        binding.shopRw.layoutManager = LinearLayoutManager(context)
-        binding.shopRw.adapter = adapter
+        binding.otherProfilePageRW.layoutManager = LinearLayoutManager(context)
+        binding.otherProfilePageRW.adapter = adapter
     }
 
     private fun getShopData() {
@@ -108,12 +145,6 @@ class OtherProfilePage : Fragment() {
                                                                                                     )
                                                                                                     .get()
                                                                                                     .addOnSuccessListener { adder ->
-                                                                                                        binding.textView17.text =
-                                                                                                            getString(
-                                                                                                                R.string.namingone
-                                                                                                            ) + " " + name.value.toString() + getString(
-                                                                                                                R.string.twodot
-                                                                                                            )
                                                                                                         list.add(
                                                                                                             ShopModel(
                                                                                                                 item = getString(
@@ -286,6 +317,22 @@ class OtherProfilePage : Fragment() {
                                                                                                                     )
                                                                                                                 )
                                                                                                             }
+                                                                                                            binding.titleOtherProfilePage.text =
+                                                                                                                getString(
+                                                                                                                    R.string.namingone
+                                                                                                                )
+                                                                                                            setUserName(
+                                                                                                                name.value.toString(),
+                                                                                                                (green.value.toString()
+                                                                                                                    .toInt() > 0),
+                                                                                                                (yellow.value.toString()
+                                                                                                                    .toInt() > 0),
+                                                                                                                (red.value.toString()
+                                                                                                                    .toInt() > 0),
+                                                                                                                (pink.value.toString()
+                                                                                                                    .toInt() > 0)
+                                                                                                            )
+                                                                                                            setIcon((moon.value.toString().toInt() > 0), (star.value.toString().toInt() > 0))
                                                                                                             adapter.submitList(
                                                                                                                 list
                                                                                                             )
@@ -296,7 +343,7 @@ class OtherProfilePage : Fragment() {
                                                                                     }
                                                                             }
                                                                     }
-                                                                binding.button3.setOnClickListener {
+                                                                binding.backButtonOtherProfile.setOnClickListener {
                                                                     Navigation.findNavController(
                                                                         binding.root
                                                                     )

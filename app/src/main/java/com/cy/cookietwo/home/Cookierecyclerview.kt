@@ -40,8 +40,8 @@ class Cookierecyclerview(val listener: UserClickedListener
     }
 
     inner class MatchViewHolder(iv: View) : RecyclerView.ViewHolder(iv) {
-        val name: TextView = iv.findViewById(R.id.textView7)
-        val count: TextView = iv.findViewById(R.id.textView8)
+        val name: TextView = iv.findViewById(R.id.userNameInfo)
+        val count: TextView = iv.findViewById(R.id.cookieNumber)
         init {
             iv.setOnClickListener() {
                 listener.isuserclicked(currentList.get(this.adapterPosition).id)

@@ -64,11 +64,11 @@ class Shoprecyclerview(val listener: BuyClickListener
     }
 
     inner class MatchViewHolder(iv: View) : RecyclerView.ViewHolder(iv) {
-        val info: TextView = iv.findViewById(R.id.textView14)
-        val price: TextView = iv.findViewById(R.id.textView15)
+        val info: TextView = iv.findViewById(R.id.nameInfo)
+        val price: TextView = iv.findViewById(R.id.priceInfo)
         val exampleText: TextView = iv.findViewById(R.id.exampleText)
         val exampleImage: ImageView = iv.findViewById(R.id.exampleImage)
-        val buy: Button = iv.findViewById(R.id.button4)
+        val buy: Button = iv.findViewById(R.id.buyButton)
     }
 }
 

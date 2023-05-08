@@ -30,7 +30,7 @@ class ProfilePage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getInfo()
-        binding.button3.setOnClickListener {
+        binding.backButton.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_profile_page_to_home2)
         }
     }

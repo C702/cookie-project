@@ -35,11 +35,11 @@ class Register : Fragment() {
     }
 
     private fun register(){
-        auth.createUserWithEmailAndPassword(binding.edittext1.text.toString(), binding.editTextTextPersonName2.text.toString()).addOnCompleteListener {
+        auth.createUserWithEmailAndPassword(binding.emailText.text.toString(), binding.passwordText.text.toString()).addOnCompleteListener {
             if (it.isSuccessful) {
                 it.result.user?.uid
-                db.reference.child("users").child(it.result.user?.uid.toString()).setValue(UserDetail(name = binding.edittext6.text.toString(), email = binding.edittext1.text.toString()))
-                db.reference.child("leaderboard").child(it.result.user?.uid.toString()).setValue(UserCookieDetail(name = binding.edittext6.text.toString(), bestscore = 0, highscore = 0, shop = Shop()))
+                db.reference.child("users").child(it.result.user?.uid.toString()).setValue(UserDetail(name = binding.userNameText.text.toString(), email = binding.emailText.text.toString()))
+                db.reference.child("leaderboard").child(it.result.user?.uid.toString()).setValue(UserCookieDetail(name = binding.userNameText.text.toString(), bestscore = 0, highscore = 0, shop = Shop()))
                 Navigation.findNavController(binding.root).navigate(R.id.action_register_to_home2)
                 Toast.makeText(context, getString(R.string.wlc), Toast.LENGTH_SHORT).show()
                 println("Success!!")
@@ -48,19 +48,19 @@ class Register : Fragment() {
     }
 
     private fun checkView(){
-        if (binding.edittext1.text.startsWith("@")) {
+        if (binding.emailText.text.startsWith("@")) {
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
         }
-        else if (binding.edittext1.text.endsWith("@")){
+        else if (binding.emailText.text.endsWith("@")){
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
         }
-        else if (!binding.edittext1.text.contains("@")){
+        else if (!binding.emailText.text.contains("@")){
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
         }
-        else if (!binding.edittext1.text.contains(".com")){
+        else if (!binding.emailText.text.contains(".com")){
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
         }
-        else if (binding.editTextTextPersonName2.text.length < 6) {
+        else if (binding.passwordText.text.length < 6) {
             Toast.makeText(context, getString(R.string.password), Toast.LENGTH_SHORT).show()
         }
         else {
@@ -69,10 +69,10 @@ class Register : Fragment() {
     }
 
     private fun clickListener() {
-        binding.button.setOnClickListener {
+        binding.registerButton.setOnClickListener {
             checkView()
         }
-        binding.loginchange.setOnClickListener {
+        binding.loginChange.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_register_to_login)
         }
     }

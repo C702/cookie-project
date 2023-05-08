@@ -15,14 +15,18 @@
     <!-- Margin Sizes -->
 
     <dimen name="medium_size_margin">10dp</dimen>
+    <dimen name="x_medium_size_margin">16dp</dimen>
     <dimen name="x_small_size_margin">5dp</dimen>
     <dimen name="small_size_margin">8dp</dimen>
     <dimen name="large_size_margin">15dp</dimen>
     <dimen name="x_large_size_margin">20dp</dimen>
+    <dimen name="xmm_large_size_margin">28dp</dimen>
+    <dimen name="xm_large_size_margin">30dp</dimen>
     <dimen name="xx_large_size_margin">40dp</dimen>
     <dimen name="xxxxx_large_size_margin">70dp</dimen>
     <dimen name="xxx_large_size_margin">50dp</dimen>
     <dimen name="xxxxxxxxxxx_large_size_margin">200dp</dimen>
+    <dimen name="xxxxxxxx_large_size_margin">150dp</dimen>
 
     <!--  -->
 
@@ -36,4 +40,11 @@
     <dimen name="logo_width">150dp</dimen>
     <dimen name="logo_height">200dp</dimen>
     <dimen name="other_profile_rw_height">200dp</dimen>
+    <dimen name="icon_width">16dp</dimen>
+    <dimen name="icon_height">16dp</dimen>
+    <dimen name="splashLogo_width">238dp</dimen>
+    <dimen name="splashLogo_height">386dp</dimen>
+    <dimen name="exampleImage_width">24dp</dimen>
+    <dimen name="exampleImage_height">24dp</dimen>
+
 </resources>

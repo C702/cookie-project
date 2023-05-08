@@ -42,7 +42,7 @@ class Shop : Fragment() {
     }
 
     private fun clicker() {
-        binding.button7.setOnClickListener {
+        binding.backButtonShop.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_shop_to_home2)
         }
     }
@@ -52,7 +52,7 @@ class Shop : Fragment() {
             db.reference.child("leaderboard").child(user.uid).child("highscore").get()
                 .addOnSuccessListener { cookie ->
                     cookieCount = cookie.value.toString().toInt()
-                    binding.textView13.text =
+                    binding.cookieAmount.text =
                         getString(R.string.Cookkkies) + cookie.value.toString()
 
                 }
