@@ -8,7 +8,7 @@
         android:id="@+id/userNameInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username:"
+        android:text="@string/username_text"
         android:layout_marginTop="@dimen/x_large_size_margin"
         android:textStyle="bold"
         android:layout_marginStart="@dimen/xm_large_size_margin"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x_large_size_margin"
         android:layout_marginEnd="@dimen/xm_large_size_margin"
-        android:text="Cookies:"
+        android:text="@string/Cookkkies"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

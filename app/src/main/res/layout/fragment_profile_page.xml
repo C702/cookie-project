@@ -16,7 +16,7 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/back"
         android:textAllCaps="false"
         android:layout_marginBottom="@dimen/xxxxxxxxxxx_large_size_margin"
         app:layout_constraintBottom_toBottomOf="parent"

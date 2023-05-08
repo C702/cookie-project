@@ -45,4 +45,7 @@
     <string name="password_text">Password</string>
     <string name="login_text">Login</string>
     <string name="back">Back</string>
+    <string name="username_text">Username:</string>
+    <string name="register_text">Register</string>
+    <string name="buy_text">Buy</string>
 </resources>
