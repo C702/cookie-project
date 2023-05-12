@@ -11,24 +11,14 @@
         android:label="fragment_home2"
         tools:layout="@layout/fragment_home2" >
         <action
-            android:id="@+id/action_home2_to_profile_page"
-            app:destination="@id/profile_page" />
-        <action
             android:id="@+id/action_home2_to_otherProfilePage"
             app:destination="@id/otherProfilePage" />
-        <action
-            android:id="@+id/action_home2_to_shop"
-            app:destination="@id/shop" />
     </fragment>
     <fragment
         android:id="@+id/profile_page"
         android:name="com.cy.cookietwo.profile.myprofile.ProfilePage"
         android:label="fragment_profile_page"
-        tools:layout="@layout/fragment_profile_page" >
-        <action
-            android:id="@+id/action_profile_page_to_home2"
-            app:destination="@id/home2" />
-    </fragment>
+        tools:layout="@layout/fragment_profile_page" />
     <fragment
         android:id="@+id/otherProfilePage"
         android:name="com.cy.cookietwo.profile.otherprofile.OtherProfilePage"
@@ -48,9 +38,6 @@
         android:name="com.cy.cookietwo.shop.Shop"
         android:label="fragment_shop"
         tools:layout="@layout/fragment_shop" >
-        <action
-            android:id="@+id/action_shop_to_home2"
-            app:destination="@id/home2" />
         <argument
             android:name="cookieAmount"
             app:argType="string"

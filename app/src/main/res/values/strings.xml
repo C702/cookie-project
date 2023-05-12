@@ -50,6 +50,7 @@
     <string name="buy_text">Buy</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Shop</string>
+    <string name="title_notifications">Profile</string>
+    <string name="title_activity_new_user">NewUserActivity</string>
 </resources>

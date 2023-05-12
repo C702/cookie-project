@@ -36,15 +36,8 @@ class Shop : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getCookie()
-        clicker()
         initrecyclerview()
         getShopData()
-    }
-
-    private fun clicker() {
-        binding.backButtonShop.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_shop_to_home2)
-        }
     }
 
     private fun getCookie() {

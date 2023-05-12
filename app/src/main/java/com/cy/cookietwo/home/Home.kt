@@ -38,9 +38,6 @@ class Home : Fragment() {
         click()
         updateUi()
         binding.cookieButton.setImageResource(R.drawable.cookie4k3)
-        binding.profileButton.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_home2_to_profile_page)
-        }
     }
 
     private fun updateUi() {
@@ -105,9 +102,6 @@ class Home : Fragment() {
         binding.cookieButton.setOnClickListener {
             add()
             Toast.makeText(context, "YUM!", Toast.LENGTH_SHORT).show()
-        }
-        binding.shopButton.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_home2_to_shop)
         }
     }
 

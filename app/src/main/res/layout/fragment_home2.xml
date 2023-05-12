@@ -1,100 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.Home">
+    android:fillViewport="true"
+    tools:ignore="MissingClass">
 
-    <ImageView
-        android:id="@+id/backgroundImage"
-        style="@style/bjk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/leaderboardText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text= "@string/leaderboardtext"
-        android:textColor="@color/logocolour"
-        android:textSize="@dimen/x_large_size_text"
-        android:layout_marginTop="@dimen/medium_size_margin"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/leaderboardRecycleView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/home_rw_height_size"
-        android:layout_marginTop="@dimen/large_size_margin"
-        tools:listitem="@layout/row"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shopButton" />
+        android:layout_height="match_parent"
+        tools:context=".home.Home">
 
-    <Button
-        android:id="@+id/shopButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/button"
-        android:text="@string/shop_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/leaderboardText"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/backgroundImage"
+            style="@style/bjk"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/cookieButton"
-        android:layout_width="@dimen/cookie_width_size"
-        android:layout_height="@dimen/cookie_height_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboardRecycleView"
-        tools:src="@drawable/cookie4k3" />
+        <TextView
+            android:id="@+id/leaderboardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_size_margin"
+            android:text="@string/leaderboardtext"
+            android:textColor="@color/logocolour"
+            android:textSize="@dimen/x_large_size_text"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/cookieText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/logocolour"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cookieButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboardRecycleView" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/leaderboardRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_rw_height_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/leaderboardText"
+            tools:listitem="@layout/row"
+            android:layout_marginTop="@dimen/medium_size_margin"/>
 
-    <TextView
-        android:id="@+id/highscoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/logocolour"
-        app:layout_constraintBottom_toTopOf="@+id/cookieButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cookieText" />
+        <ImageButton
+            android:id="@+id/cookieButton"
+            android:layout_width="@dimen/cookie_width_size"
+            android:layout_height="@dimen/cookie_height_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/leaderboardRecycleView"
+            tools:src="@drawable/cookie4k3" />
 
-    <TextView
-        android:id="@+id/rhetoricalQuestionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/motivation_text"
-        android:textColor="@color/logocolour"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cookieButton" />
+        <TextView
+            android:id="@+id/cookieText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/logocolour"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cookieButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/leaderboardRecycleView" />
 
-    <ImageButton
-        android:id="@+id/profileButton"
-        android:layout_width="@dimen/profile_button_width_size"
-        android:layout_height="@dimen/profile_button_height_size"
-        android:src="@drawable/pfp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/highscoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/logocolour"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cookieButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cookieText" />
+
+        <TextView
+            android:id="@+id/rhetoricalQuestionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/motivation_text"
+            android:textColor="@color/logocolour"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cookieButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
