@@ -2,11 +2,11 @@ package com.cy.cookietwo.register
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.cy.cookietwo.HomeActivity
 import com.cy.cookietwo.R
@@ -36,12 +36,27 @@ class Register : Fragment() {
         clickListener()
     }
 
-    private fun register(){
-        auth.createUserWithEmailAndPassword(binding.emailText.text.toString(), binding.passwordText.text.toString()).addOnCompleteListener {
+    private fun register() {
+        auth.createUserWithEmailAndPassword(
+            binding.emailText.text.toString(),
+            binding.passwordText.text.toString()
+        ).addOnCompleteListener {
             if (it.isSuccessful) {
                 it.result.user?.uid
-                db.reference.child("users").child(it.result.user?.uid.toString()).setValue(UserDetail(name = binding.userNameText.text.toString(), email = binding.emailText.text.toString()))
-                db.reference.child("leaderboard").child(it.result.user?.uid.toString()).setValue(UserCookieDetail(name = binding.userNameText.text.toString(), bestscore = 0, highscore = 0, shop = Shop()))
+                db.reference.child("users").child(it.result.user?.uid.toString()).setValue(
+                    UserDetail(
+                        name = binding.userNameText.text.toString(),
+                        email = binding.emailText.text.toString()
+                    )
+                )
+                db.reference.child("leaderboard").child(it.result.user?.uid.toString()).setValue(
+                    UserCookieDetail(
+                        name = binding.userNameText.text.toString(),
+                        bestscore = 0,
+                        highscore = 0,
+                        shop = Shop()
+                    )
+                )
                 val intent = Intent(activity, HomeActivity::class.java)
                 activity?.startActivity(intent)
                 activity?.finish()
@@ -52,23 +67,18 @@ class Register : Fragment() {
         }
     }
 
-    private fun checkView(){
+    private fun checkView() {
         if (binding.emailText.text.startsWith("@")) {
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
-        }
-        else if (binding.emailText.text.endsWith("@")){
+        } else if (binding.emailText.text.endsWith("@")) {
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
-        }
-        else if (!binding.emailText.text.contains("@")){
+        } else if (!binding.emailText.text.contains("@")) {
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
-        }
-        else if (!binding.emailText.text.contains(".com")){
+        } else if (!binding.emailText.text.contains(".com")) {
             Toast.makeText(context, getString(R.string.email), Toast.LENGTH_SHORT).show()
-        }
-        else if (binding.passwordText.text.length < 6) {
+        } else if (binding.passwordText.text.length < 6) {
             Toast.makeText(context, getString(R.string.password), Toast.LENGTH_SHORT).show()
-        }
-        else {
+        } else {
             register()
         }
     }

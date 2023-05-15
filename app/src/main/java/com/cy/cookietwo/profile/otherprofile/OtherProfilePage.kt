@@ -93,25 +93,25 @@ class OtherProfilePage : Fragment() {
                                     .get().addOnSuccessListener { vip ->
                                         db.reference.child("leaderboard")
                                             .child(args.userId.toString())
-                                            .child("shop").child("Moon")
+                                            .child("shop").child("moon")
                                             .get().addOnSuccessListener { moon ->
                                                 db.reference.child("leaderboard")
                                                     .child(args.userId.toString())
-                                                    .child("shop").child("Pink")
+                                                    .child("shop").child("pink")
                                                     .get().addOnSuccessListener { pink ->
                                                         db.reference.child("leaderboard")
                                                             .child(args.userId.toString())
-                                                            .child("shop").child("Star")
+                                                            .child("shop").child("star")
                                                             .get().addOnSuccessListener { star ->
                                                                 db.reference.child("leaderboard")
                                                                     .child(args.userId.toString())
-                                                                    .child("shop").child("Red")
+                                                                    .child("shop").child("red")
                                                                     .get()
                                                                     .addOnSuccessListener { red ->
                                                                         db.reference.child("leaderboard")
                                                                             .child(args.userId.toString())
                                                                             .child("shop")
-                                                                            .child("Yellow")
+                                                                            .child("yellow")
                                                                             .get()
                                                                             .addOnSuccessListener { yellow ->
                                                                                 db.reference.child("leaderboard")
@@ -128,7 +128,7 @@ class OtherProfilePage : Fragment() {
                                                                                                 args.userId.toString()
                                                                                             )
                                                                                             .child("shop")
-                                                                                            .child("Green")
+                                                                                            .child("green")
                                                                                             .get()
                                                                                             .addOnSuccessListener { green ->
                                                                                                 db.reference.child(

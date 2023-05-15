@@ -109,7 +109,11 @@ class Home : Fragment() {
         auth.currentUser?.let { user->
             db.reference.child("leaderboard").child(user.uid).child("highscore").get().addOnSuccessListener { cookie->
                 db.reference.child("leaderboard").child(user.uid).child("bestscore").get().addOnSuccessListener { best->
-                    check(cookie.value.toString().toInt(), best.value.toString().toInt(), user, cookie)
+                    var nBest = "0"
+                    var nCookie = "0"
+                    if (best.value.toString() != "null") nBest = best.value.toString()
+                    if (cookie.value.toString() != "null") nCookie = cookie.value.toString()
+                    check(nCookie.toInt(), nBest.toInt(), user, cookie)
 
                 }
 

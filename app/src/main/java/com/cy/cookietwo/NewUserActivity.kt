@@ -19,7 +19,7 @@ class NewUserActivity : AppCompatActivity() {
         binding = ActivityNewUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        val navView: BottomNavigationView = binding.navViewUser
 
         val navController = findNavController(R.id.nav_host_fragment_activity_new_user)
         // Passing each menu ID as a set of Ids because each
