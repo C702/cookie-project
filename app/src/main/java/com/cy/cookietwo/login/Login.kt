@@ -74,8 +74,5 @@ class Login : Fragment() {
         binding.loginButton.setOnClickListener {
             checkView()
         }
-        binding.changer.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_login2_to_register2)
-        }
     }
 }

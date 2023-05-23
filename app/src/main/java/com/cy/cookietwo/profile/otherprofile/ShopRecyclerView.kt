@@ -5,6 +5,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
@@ -13,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cy.cookietwo.R
 
 class ShopRecyclerView(
-    val listener: Context?
+    val listener: Context?,
+    val isProfile: Boolean?
 ) :
     ListAdapter<ShopModel, ShopRecyclerView.MatchViewHolder>(
         diffCallback
@@ -31,11 +33,13 @@ class ShopRecyclerView(
     override fun onBindViewHolder(holder: MatchViewHolder, position: Int) {
         with(getItem(position)) {
             holder.item.text = this.item
+            holder.switch.isChecked = this.isChosen ?: false
         }
     }
 
     inner class MatchViewHolder(iv: View) : RecyclerView.ViewHolder(iv) {
         val item: TextView = iv.findViewById(R.id.itemName)
+        val switch: Switch = iv.findViewById(R.id.profileSwitch)
     }
 }
 

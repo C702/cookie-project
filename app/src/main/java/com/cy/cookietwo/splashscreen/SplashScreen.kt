@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.cy.cookietwo.HomeActivity
+import com.cy.cookietwo.NewUserActivity
 import com.cy.cookietwo.R
 import com.cy.cookietwo.databinding.FragmentSplashScreenBinding
 import com.cy.cookietwo.login.rememberme.UserSettings
@@ -62,12 +63,16 @@ class SplashScreen : Fragment() {
                 }
                 else {
                     Toast.makeText(context, getString(R.string.splashscreenunable), Toast.LENGTH_SHORT).show()
-                    Navigation.findNavController(binding.root).navigate(R.id.action_splashScreen2_to_login2)
+                    val intent = Intent(activity, NewUserActivity::class.java)
+                    activity?.startActivity(intent)
+                    activity?.finish()
                 }
             }
         }
         else {
-            Navigation.findNavController(binding.root).navigate(R.id.action_splashScreen2_to_login2)
+            val intent = Intent(activity, NewUserActivity::class.java)
+            activity?.startActivity(intent)
+            activity?.finish()
         }
     }
 }

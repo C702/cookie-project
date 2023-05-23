@@ -51,6 +51,9 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Shop</string>
+    <string name="title_register">Register</string>
+    <string name="title_log_in">Log in</string>
     <string name="title_notifications">Profile</string>
     <string name="title_activity_new_user">NewUserActivity</string>
+    <string name="switch_profile">Is active?</string>
 </resources>

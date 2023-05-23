@@ -76,21 +76,8 @@
         android:id="@+id/logo"
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
-        android:layout_marginTop="@dimen/small_size_margin"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/changer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/changesign"
-        android:textColor="@color/logocolour"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/x_large_size_margin"
-        android:textSize="@dimen/large_size_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBox" />
@@ -103,6 +90,6 @@
         app:layout_constraintBottom_toTopOf="@+id/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changer" />
+        app:layout_constraintTop_toBottomOf="@+id/loginBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

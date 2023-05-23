@@ -74,7 +74,7 @@ class OtherProfilePage : Fragment() {
     }
 
     private fun initrecyclerview() {
-        adapter = ShopRecyclerView(context)
+        adapter = ShopRecyclerView(context, false)
         binding.otherProfilePageRW.layoutManager = LinearLayoutManager(context)
         binding.otherProfilePageRW.adapter = adapter
     }

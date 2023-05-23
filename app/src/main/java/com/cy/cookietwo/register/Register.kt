@@ -87,8 +87,5 @@ class Register : Fragment() {
         binding.registerButton.setOnClickListener {
             checkView()
         }
-        binding.loginChange.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_register2_to_login2)
-        }
     }
 }
