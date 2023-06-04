@@ -74,7 +74,9 @@ class Home : Fragment() {
                         id = child.key,
                         name = child.child("name").value.toString(),
                         count = child.child("highscore").value.toString().toInt(),
-                        high = child.child("bestscore").value.toString().toInt()
+                        high = child.child("bestscore").value.toString().toInt(),
+                        icon = child.child("shop").child("chosen_item").value.toString(),
+                        colour = child.child("shop").child("chosen_colour").value.toString()
                     )
                 )
             }

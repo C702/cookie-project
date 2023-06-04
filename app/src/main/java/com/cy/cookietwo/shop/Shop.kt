@@ -64,6 +64,13 @@ class Shop : Fragment() {
                             Log.d(TAG, "isBuyClicked: " + it.child(name.toString()).value.toString().toInt())
                              val newCookieCount = cookieCount-item.value
                             db.reference.child("leaderboard").child(user.uid).child("highscore").setValue(newCookieCount)
+                             if (name == "green" || name == "red" || name == "pink" || name == "yellow") {
+                                 db.reference.child("leaderboard").child(user.uid).child("shop").child("chosen_colour").setValue(name)
+                             }
+                             if (name == "moon" || name == "star") {
+                                 db.reference.child("leaderboard").child(user.uid).child("shop").child("chosen_item").setValue(name)
+
+                             }
                             db.reference.child("leaderboard").child(user.uid).child("shop").child(item.name.toString()).setValue(numbertwo.toString().toInt()+1)
                              getCookie()
                          }

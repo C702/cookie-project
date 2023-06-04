@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class OtherProfilePage : Fragment() {
 
-    private lateinit var adapter: ShopRecyclerView
+    private lateinit var adapter: OtherProfileRecyclerView
     val args by navArgs<OtherProfilePageArgs>()
     val db = FirebaseDatabase.getInstance()
     private lateinit var binding: FragmentOtherProfileBinding
@@ -39,12 +39,12 @@ class OtherProfilePage : Fragment() {
         getShopData()
     }
 
-    private fun setIcon( moon: Boolean, star: Boolean) {
-        if (moon) {
+    private fun setIcon(chosenIcon: String) {
+        if (chosenIcon == "moon") {
             binding.icon.isVisible = true
             binding.icon.setImageResource(R.drawable.ic_moon)
         }
-        if (star) {
+        if (chosenIcon == "star") {
             binding.icon.isVisible = true
             binding.icon.setImageResource(R.drawable.ic_star)
         }
@@ -53,34 +53,28 @@ class OtherProfilePage : Fragment() {
     @SuppressLint("ResourceAsColor")
     private fun setUserName(
         userName: String,
-        green: Boolean,
-        yellow: Boolean,
-        red: Boolean,
-        pink: Boolean
+        chosen: String
     ) {
-        if (green) {
+        if (chosen == "green") {
             binding.userName.setTextColor(Color.parseColor("#2DD2A2"))
-        }
-        else if (yellow) {
+        } else if (chosen == "yellow") {
             binding.userName.setTextColor(Color.parseColor("#ecdc13"))
-        }
-        else if (red) {
+        } else if (chosen == "red") {
             binding.userName.setTextColor(Color.parseColor("#D22D5D"))
-        }
-        else if (pink) {
+        } else if (chosen == "pink") {
             binding.userName.setTextColor(Color.parseColor("#FFC0CB"))
         }
         binding.userName.text = userName
     }
 
     private fun initrecyclerview() {
-        adapter = ShopRecyclerView(context, false)
+        adapter = OtherProfileRecyclerView(context, false)
         binding.otherProfilePageRW.layoutManager = LinearLayoutManager(context)
         binding.otherProfilePageRW.adapter = adapter
     }
 
     private fun getShopData() {
-        val list = arrayListOf<ShopModel>()
+        val list = arrayListOf<OtherProfileModel>()
         db.reference.child("leaderboard").child(args.userId.toString()).child("highscore").get()
             .addOnSuccessListener { cookie ->
                 db.reference.child("leaderboard").child(args.userId.toString()).child("name").get()
@@ -128,9 +122,10 @@ class OtherProfilePage : Fragment() {
                                                                                                 args.userId.toString()
                                                                                             )
                                                                                             .child("shop")
-                                                                                            .child("green")
+                                                                                            .child("chosen_colour")
                                                                                             .get()
-                                                                                            .addOnSuccessListener { green ->
+                                                                                            .addOnSuccessListener { colour ->
+
                                                                                                 db.reference.child(
                                                                                                     "leaderboard"
                                                                                                 )
@@ -141,216 +136,242 @@ class OtherProfilePage : Fragment() {
                                                                                                         "shop"
                                                                                                     )
                                                                                                     .child(
-                                                                                                        "adder"
+                                                                                                        "chosen_item"
                                                                                                     )
                                                                                                     .get()
-                                                                                                    .addOnSuccessListener { adder ->
-                                                                                                        list.add(
-                                                                                                            ShopModel(
-                                                                                                                item = getString(
-                                                                                                                    R.string.naming
-                                                                                                                ) + name.value.toString()
-                                                                                                            )
-                                                                                                        )
-                                                                                                        list.add(
-                                                                                                            ShopModel(
-                                                                                                                item = getString(
-                                                                                                                    R.string.Cookkkies
-                                                                                                                ) + cookie.value.toString()
-                                                                                                            )
-                                                                                                        )
-                                                                                                        list.add(
-                                                                                                            ShopModel(
-                                                                                                                item = getString(
-                                                                                                                    R.string.Highestt
-                                                                                                                ) + best.value.toString()
-                                                                                                            )
-                                                                                                        )
-                                                                                                        list.add(
-                                                                                                            ShopModel(
-                                                                                                                item = getString(
-                                                                                                                    R.string.RebirthProfile
-                                                                                                                ) + rebirth.value.toString()
-                                                                                                            )
-                                                                                                        )
-                                                                                                        list.add(
-                                                                                                            ShopModel(
-                                                                                                                item = getString(
-                                                                                                                    R.string.AdderProfile
-                                                                                                                ) + adder.value.toString()
-                                                                                                            )
-                                                                                                        )
-                                                                                                        if (vip.value.toString()
-                                                                                                                .toInt() != 1
-                                                                                                        ) {
-                                                                                                            list.add(
-                                                                                                                ShopModel(
-                                                                                                                    item = getString(
-                                                                                                                        R.string.VIPYES
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            )
-                                                                                                        } else {
-                                                                                                            list.add(
-                                                                                                                ShopModel(
-                                                                                                                    item = getString(
-                                                                                                                        R.string.VIPNO
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            )
-                                                                                                            Log.d(
-                                                                                                                "TAG",
-                                                                                                                "getShopData: " + pink.value.toString()
-                                                                                                                    .toInt()
-                                                                                                            )
-                                                                                                            if (pink.value.toString()
-                                                                                                                    .toInt() > 0
-                                                                                                            ) {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.PINKYES
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            } else {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.PINKNO
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            }
-                                                                                                            if (green.value.toString()
-                                                                                                                    .toInt() > 0
-                                                                                                            ) {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.GREENYES
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            } else {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.GREENNO
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            }
-                                                                                                            if (red.value.toString()
-                                                                                                                    .toInt() > 0
-                                                                                                            ) {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.REDYES
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            } else {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.REDYES
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            }
-                                                                                                            if (moon.value.toString()
-                                                                                                                    .toInt() > 0
-                                                                                                            ) {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.MOONYES
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            } else {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.MOONNO
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            }
-                                                                                                            if (yellow.value.toString()
-                                                                                                                    .toInt() > 0
-                                                                                                            ) {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.YELLOWYES
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            } else {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.YELLOWNO
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            }
-                                                                                                            if (star.value.toString()
-                                                                                                                    .toInt() > 0
-                                                                                                            ) {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.STARYES
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            } else {
-                                                                                                                list.add(
-                                                                                                                    ShopModel(
-                                                                                                                        item = getString(
-                                                                                                                            R.string.STARNO
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                )
-                                                                                                            }
-                                                                                                            binding.titleOtherProfilePage.text =
-                                                                                                                getString(
-                                                                                                                    R.string.namingone
-                                                                                                                )
-                                                                                                            setUserName(
-                                                                                                                name.value.toString(),
-                                                                                                                (green.value.toString()
-                                                                                                                    .toInt() > 0),
-                                                                                                                (yellow.value.toString()
-                                                                                                                    .toInt() > 0),
-                                                                                                                (red.value.toString()
-                                                                                                                    .toInt() > 0),
-                                                                                                                (pink.value.toString()
-                                                                                                                    .toInt() > 0)
-                                                                                                            )
-                                                                                                            setIcon((moon.value.toString().toInt() > 0), (star.value.toString().toInt() > 0))
-                                                                                                            adapter.submitList(
-                                                                                                                list
-                                                                                                            )
-                                                                                                        }
+                                                                                                    .addOnSuccessListener { icon ->
 
+                                                                                                        db.reference.child(
+                                                                                                            "leaderboard"
+                                                                                                        )
+                                                                                                            .child(
+                                                                                                                args.userId.toString()
+                                                                                                            )
+                                                                                                            .child(
+                                                                                                                "shop"
+                                                                                                            )
+                                                                                                            .child(
+                                                                                                                "green"
+                                                                                                            )
+                                                                                                            .get()
+                                                                                                            .addOnSuccessListener { green ->
+                                                                                                                db.reference.child(
+                                                                                                                    "leaderboard"
+                                                                                                                )
+                                                                                                                    .child(
+                                                                                                                        args.userId.toString()
+                                                                                                                    )
+                                                                                                                    .child(
+                                                                                                                        "shop"
+                                                                                                                    )
+                                                                                                                    .child(
+                                                                                                                        "adder"
+                                                                                                                    )
+                                                                                                                    .get()
+                                                                                                                    .addOnSuccessListener { adder ->
+                                                                                                                        list.add(
+                                                                                                                            OtherProfileModel(
+                                                                                                                                item = getString(
+                                                                                                                                    R.string.naming
+                                                                                                                                ) + name.value.toString()
+                                                                                                                            )
+                                                                                                                        )
+                                                                                                                        list.add(
+                                                                                                                            OtherProfileModel(
+                                                                                                                                item = getString(
+                                                                                                                                    R.string.Cookkkies
+                                                                                                                                ) + cookie.value.toString()
+                                                                                                                            )
+                                                                                                                        )
+                                                                                                                        list.add(
+                                                                                                                            OtherProfileModel(
+                                                                                                                                item = getString(
+                                                                                                                                    R.string.Highestt
+                                                                                                                                ) + best.value.toString()
+                                                                                                                            )
+                                                                                                                        )
+                                                                                                                        list.add(
+                                                                                                                            OtherProfileModel(
+                                                                                                                                item = getString(
+                                                                                                                                    R.string.RebirthProfile
+                                                                                                                                ) + rebirth.value.toString()
+                                                                                                                            )
+                                                                                                                        )
+                                                                                                                        list.add(
+                                                                                                                            OtherProfileModel(
+                                                                                                                                item = getString(
+                                                                                                                                    R.string.AdderProfile
+                                                                                                                                ) + adder.value.toString()
+                                                                                                                            )
+                                                                                                                        )
+                                                                                                                        if (vip.value.toString()
+                                                                                                                                .toInt() != 1
+                                                                                                                        ) {
+                                                                                                                            list.add(
+                                                                                                                                OtherProfileModel(
+                                                                                                                                    item = getString(
+                                                                                                                                        R.string.VIPYES
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            )
+                                                                                                                        } else {
+                                                                                                                            list.add(
+                                                                                                                                OtherProfileModel(
+                                                                                                                                    item = getString(
+                                                                                                                                        R.string.VIPNO
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            )
+                                                                                                                            Log.d(
+                                                                                                                                "TAG",
+                                                                                                                                "getShopData: " + pink.value.toString()
+                                                                                                                                    .toInt()
+                                                                                                                            )
+                                                                                                                            if (pink.value.toString()
+                                                                                                                                    .toInt() > 0
+                                                                                                                            ) {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.PINKYES
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            } else {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.PINKNO
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                            if (green.value.toString()
+                                                                                                                                    .toInt() > 0
+                                                                                                                            ) {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.GREENYES
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            } else {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.GREENNO
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                            if (red.value.toString()
+                                                                                                                                    .toInt() > 0
+                                                                                                                            ) {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.REDYES
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            } else {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.REDYES
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                            if (moon.value.toString()
+                                                                                                                                    .toInt() > 0
+                                                                                                                            ) {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.MOONYES
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            } else {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.MOONNO
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                            if (yellow.value.toString()
+                                                                                                                                    .toInt() > 0
+                                                                                                                            ) {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.YELLOWYES
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            } else {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.YELLOWNO
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                            if (star.value.toString()
+                                                                                                                                    .toInt() > 0
+                                                                                                                            ) {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.STARYES
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            } else {
+                                                                                                                                list.add(
+                                                                                                                                    OtherProfileModel(
+                                                                                                                                        item = getString(
+                                                                                                                                            R.string.STARNO
+                                                                                                                                        )
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                            binding.titleOtherProfilePage.text =
+                                                                                                                                getString(
+                                                                                                                                    R.string.namingone
+                                                                                                                                )
+                                                                                                                            setUserName(
+                                                                                                                                name.value.toString(),
+                                                                                                                                colour.value.toString()
+                                                                                                                            )
+                                                                                                                            setIcon(
+                                                                                                                                icon.value.toString()
+                                                                                                                            )
+                                                                                                                            adapter.submitList(
+                                                                                                                                list
+                                                                                                                            )
+                                                                                                                        }
+
+                                                                                                                    }
+                                                                                                            }
                                                                                                     }
                                                                                             }
                                                                                     }
+                                                                                binding.backButtonOtherProfile.setOnClickListener {
+                                                                                    Navigation.findNavController(
+                                                                                        binding.root
+                                                                                    )
+                                                                                        .navigate(R.id.action_otherProfilePage_to_home2)
+                                                                                }
                                                                             }
-                                                                    }
-                                                                binding.backButtonOtherProfile.setOnClickListener {
-                                                                    Navigation.findNavController(
-                                                                        binding.root
-                                                                    )
-                                                                        .navigate(R.id.action_otherProfilePage_to_home2)
-                                                                }
-                                                            }
 
+                                                                    }
+                                                            }
                                                     }
                                             }
                                     }
