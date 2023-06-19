@@ -3,7 +3,6 @@ package com.cy.cookietwo.profile.myprofile
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -105,388 +104,261 @@ class ProfilePage : Fragment() {
         }
     }
 
-    private fun getShopData() {
+    private fun getColourShop(otherList: ArrayList<ShopModel>) {
         val list = arrayListOf<ShopModel>()
+        otherList.forEach {
+            list.add(it)
+        }
         auth.currentUser?.let { user ->
-            db.reference.child("leaderboard").child(user.uid).child("highscore").get()
-                .addOnSuccessListener { cookie ->
-                    db.reference.child("leaderboard").child(user.uid)
-                        .child("shop").child("chosen_colour").get()
-                        .addOnSuccessListener { chosenColour ->
-                            db.reference.child("leaderboard").child(user.uid).child("shop")
-                                .child("chosen_item").get().addOnSuccessListener { chosenItem ->
-                                db.reference.child("leaderboard").child(user.uid).child("name")
-                                    .get()
-                                    .addOnSuccessListener { name ->
-                                        db.reference.child("leaderboard").child(user.uid)
-                                            .child("bestscore")
-                                            .get().addOnSuccessListener { best ->
-                                                db.reference.child("leaderboard").child(user.uid)
-                                                    .child("shop").child("vip")
-                                                    .get().addOnSuccessListener { vip ->
-                                                        db.reference.child("leaderboard")
-                                                            .child(user.uid)
-                                                            .child("shop").child("moon")
-                                                            .get().addOnSuccessListener { moon ->
-                                                                db.reference.child("leaderboard")
-                                                                    .child(user.uid)
-                                                                    .child("shop").child("pink")
-                                                                    .get()
-                                                                    .addOnSuccessListener { pink ->
-                                                                        db.reference.child("leaderboard")
-                                                                            .child(user.uid)
-                                                                            .child("shop")
-                                                                            .child("star")
-                                                                            .get()
-                                                                            .addOnSuccessListener { star ->
-                                                                                db.reference.child("leaderboard")
-                                                                                    .child(user.uid)
-                                                                                    .child("shop")
-                                                                                    .child("chosen_item")
-                                                                                    .get()
-                                                                                    .addOnSuccessListener { icon ->
-                                                                                        db.reference.child(
-                                                                                            "leaderboard"
-                                                                                        )
-                                                                                            .child(
-                                                                                                user.uid
-                                                                                            )
-                                                                                            .child("shop")
-                                                                                            .child("chosen_colour")
-                                                                                            .get()
-                                                                                            .addOnSuccessListener { colour ->
-                                                                                                db.reference.child(
-                                                                                                    "leaderboard"
-                                                                                                )
-                                                                                                    .child(
-                                                                                                        user.uid
-                                                                                                    )
-                                                                                                    .child(
-                                                                                                        "shop"
-                                                                                                    )
-                                                                                                    .child(
-                                                                                                        "red"
-                                                                                                    )
-                                                                                                    .get()
-                                                                                                    .addOnSuccessListener { red ->
-                                                                                                        db.reference.child(
-                                                                                                            "leaderboard"
-                                                                                                        )
-                                                                                                            .child(
-                                                                                                                user.uid
-                                                                                                            )
-                                                                                                            .child(
-                                                                                                                "shop"
-                                                                                                            )
-                                                                                                            .child(
-                                                                                                                "yellow"
-                                                                                                            )
-                                                                                                            .get()
-                                                                                                            .addOnSuccessListener { yellow ->
-                                                                                                                db.reference.child(
-                                                                                                                    "leaderboard"
-                                                                                                                )
-                                                                                                                    .child(
-                                                                                                                        user.uid
-                                                                                                                    )
-                                                                                                                    .child(
-                                                                                                                        "shop"
-                                                                                                                    )
-                                                                                                                    .child(
-                                                                                                                        "rebirth"
-                                                                                                                    )
-                                                                                                                    .get()
-                                                                                                                    .addOnSuccessListener { rebirth ->
+            db.reference.child("leaderboard").child(user.uid)
+                .child("shop").get().addOnSuccessListener { shop ->
+                    val green = shop.child("green")
+                    val red = shop.child("red")
+                    val yellow = shop.child("yellow")
+                    val pink = shop.child("pink")
+                    val adder = shop.child("adder")
+                    val vip = shop.child("vip")
+                    val chosenColour = shop.child("chosen_colour")
+                    val chosenItem = shop.child("chosen_item")
+                    val rebirth = shop.child("rebirth")
+                    val moon = shop.child("moon")
+                    val star = shop.child("star")
 
-                                                                                                                        db.reference.child(
-                                                                                                                            "leaderboard"
-                                                                                                                        )
-                                                                                                                            .child(
-                                                                                                                                user.uid
-                                                                                                                            )
-                                                                                                                            .child(
-                                                                                                                                "shop"
-                                                                                                                            )
-                                                                                                                            .child(
-                                                                                                                                "green"
-                                                                                                                            )
-                                                                                                                            .get()
-                                                                                                                            .addOnSuccessListener { green ->
-                                                                                                                                db.reference.child(
-                                                                                                                                    "leaderboard"
-                                                                                                                                )
-                                                                                                                                    .child(
-                                                                                                                                        user.uid
-                                                                                                                                    )
-                                                                                                                                    .child(
-                                                                                                                                        "shop"
-                                                                                                                                    )
-                                                                                                                                    .child(
-                                                                                                                                        "adder"
-                                                                                                                                    )
-                                                                                                                                    .get()
-                                                                                                                                    .addOnSuccessListener { adder ->
-                                                                                                                                        list.add(
-                                                                                                                                            ShopModel(
-                                                                                                                                                item = getString(
-                                                                                                                                                    R.string.naming
-                                                                                                                                                ) + name.value.toString(),
-                                                                                                                                                isChosen = name.key.toString() == chosenColour.value.toString(),
-                                                                                                                                                isSwitchEnabled = false
-                                                                                                                                            )
-                                                                                                                                        )
-                                                                                                                                        list.add(
-                                                                                                                                            ShopModel(
-                                                                                                                                                item = getString(
-                                                                                                                                                    R.string.Cookkkies
-                                                                                                                                                ) + cookie.value.toString(),
-                                                                                                                                                isChosen = cookie.key.toString() == chosenColour.value.toString(),
-                                                                                                                                                isSwitchEnabled = false
-                                                                                                                                            )
-                                                                                                                                        )
-                                                                                                                                        list.add(
-                                                                                                                                            ShopModel(
-                                                                                                                                                item = getString(
-                                                                                                                                                    R.string.Highestt
-                                                                                                                                                ) + best.value.toString(),
-                                                                                                                                                isChosen = best.key.toString() == chosenColour.value.toString(),
-                                                                                                                                                isSwitchEnabled = false
-                                                                                                                                            )
-                                                                                                                                        )
-                                                                                                                                        list.add(
-                                                                                                                                            ShopModel(
-                                                                                                                                                item = getString(
-                                                                                                                                                    R.string.RebirthProfile
-                                                                                                                                                ) + rebirth.value.toString(),
-                                                                                                                                                isChosen = rebirth.key.toString() == chosenColour.value.toString(),
-                                                                                                                                                isSwitchEnabled = false
-                                                                                                                                            )
-                                                                                                                                        )
-                                                                                                                                        list.add(
-                                                                                                                                            ShopModel(
-                                                                                                                                                item = getString(
-                                                                                                                                                    R.string.AdderProfile
-                                                                                                                                                ) + adder.value.toString(),
-                                                                                                                                                isChosen = adder.key.toString() == chosenColour.value.toString(),
-                                                                                                                                                isSwitchEnabled = false
-                                                                                                                                            )
-                                                                                                                                        )
-                                                                                                                                        if (vip.value.toString()
-                                                                                                                                                .toInt() != 1
-                                                                                                                                        ) {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.VIPYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = vip.key.toString() == chosenColour.value.toString(),
-                                                                                                                                                    isSwitchEnabled = false
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        } else {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.VIPNO
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = vip.key.toString() == chosenColour.value.toString(),
-                                                                                                                                                    isSwitchEnabled = false
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        }
-                                                                                                                                        Log.d(
-                                                                                                                                            "TAG",
-                                                                                                                                            "getShopData: " + pink.value.toString()
-                                                                                                                                                .toInt()
-                                                                                                                                        )
-                                                                                                                                        if (pink.value.toString()
-                                                                                                                                                .toInt() > 0
-                                                                                                                                        ) {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.PINKYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = pink.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        } else {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.PINKNO
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = pink.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        }
-                                                                                                                                        if (green.value.toString()
-                                                                                                                                                .toInt() > 0
-                                                                                                                                        ) {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.GREENYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = green.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        } else {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.GREENNO
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = green.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        }
-                                                                                                                                        if (red.value.toString()
-                                                                                                                                                .toInt() > 0
-                                                                                                                                        ) {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.REDYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = red.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        } else {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.REDYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = red.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        }
-                                                                                                                                        if (moon.value.toString()
-                                                                                                                                                .toInt() > 0
-                                                                                                                                        ) {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.MOONYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = moon.key.toString() == chosenItem.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        } else {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.MOONNO
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = moon.key.toString() == chosenItem.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        }
-                                                                                                                                        if (yellow.value.toString()
-                                                                                                                                                .toInt() > 0
-                                                                                                                                        ) {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.YELLOWYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = yellow.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        } else {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.YELLOWNO
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = yellow.key.toString() == chosenColour.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        }
-                                                                                                                                        if (star.value.toString()
-                                                                                                                                                .toInt() > 0
-                                                                                                                                        ) {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.STARYES
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = star.key.toString()
-                                                                                                                                                        .lowercase() == chosenItem.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        } else {
-                                                                                                                                            list.add(
-                                                                                                                                                ShopModel(
-                                                                                                                                                    item = getString(
-                                                                                                                                                        R.string.STARNO
-                                                                                                                                                    ),
-                                                                                                                                                    isChosen = star.key.toString() == chosenItem.value.toString()
-                                                                                                                                                )
-                                                                                                                                            )
-                                                                                                                                        }
-                                                                                                                                        binding.titleProfilePage.text =
-                                                                                                                                            getString(
-                                                                                                                                                R.string.namingone
-                                                                                                                                            )
-                                                                                                                                        setUserName(
-                                                                                                                                            name.value.toString(),
-                                                                                                                                            colour.value.toString()
-                                                                                                                                        )
-                                                                                                                                        setIcon(
-                                                                                                                                            icon.value.toString()
-                                                                                                                                        )
-                                                                                                                                        Log.d(
-                                                                                                                                            "TAG",
-                                                                                                                                            "getShopData: " + chosenColour.value.toString()
-                                                                                                                                        )
-                                                                                                                                        adapter.submitList(
-                                                                                                                                            list
-                                                                                                                                        )
-                                                                                                                                    }
+                    setIcon(chosenItem.value.toString())
 
-                                                                                                                            }
-                                                                                                                    }
-                                                                                                            }
-                                                                                                    }
-                                                                                            }
-                                                                                    }
+                    if (yellow.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.YELLOWYES
+                                ),
+                                isChosen = yellow.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    } else {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.YELLOWNO
+                                ),
+                                isChosen = yellow.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    }
 
-                                                                            }
-                                                                    }
-                                                            }
-                                                    }
-                                            }
-                                    }
-                            }
-                        }
-                }
+                    if (green.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.GREENYES
+                                ),
+                                isChosen = green.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    } else {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.GREENNO
+                                ),
+                                isChosen = green.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    }
 
-                    //db.reference.child("leaderboard").child(user.uid).child("highscore").get()
-                    //.addOnSuccessListener { cookie ->
+                    if (pink.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.PINKYES
+                                ),
+                                isChosen = pink.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    } else {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.PINKNO
+                                ),
+                                isChosen = pink.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    }
 
-                    /*private fun getInfo() {
-                        auth.currentUser?.let { user ->
-                            db.reference.child("leaderboard").child(user.uid).child("highscore").get()
-                                .addOnSuccessListener { cookie ->
-                                    db.reference.child("leaderboard").child(user.uid).child("name").get()
-                                        .addOnSuccessListener { name ->
-                                            db.reference.child("leaderboard").child(user.uid).child("bestscore")
-                                                .get().addOnSuccessListener { best ->
-                                                /*binding.textView9.text =
-                                                    getString(R.string.naming) + name.value.toString()
-                                                binding.textView10.text =
-                                                    getString(R.string.Cookkkies) + cookie.value.toString()
-                                                binding.textView11.text =
-                                                    getString(R.string.Highestt) + cookie.value.toString()*/
-                                            }
+                    if (red.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.REDYES
+                                ),
+                                isChosen = red.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    } else {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.REDNO
+                                ),
+                                isChosen = red.key.toString() == chosenColour.value.toString()
+                            )
+                        )
+                    }
 
-                                        }
-                                }
-                        }
+                    if (vip.value.toString()
+                            .toInt() != 1
+                    ) {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.VIPYES
+                                ),
+                                isChosen = vip.key.toString() == chosenColour.value.toString(),
+                                isSwitchEnabled = false
+                            )
+                        )
+                    } else {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.VIPNO
+                                ),
+                                isChosen = vip.key.toString() == chosenColour.value.toString(),
+                                isSwitchEnabled = false
+                            )
+                        )
+                    }
 
-                    }*/
+                    list.add(
+                        ShopModel(
+                            item = getString(
+                                R.string.AdderProfile
+                            ) + adder.value.toString(),
+                            isChosen = adder.key.toString() == chosenColour.value.toString(),
+                            isSwitchEnabled = false
+                        )
+                    )
+                    ShopModel(
+                        item = getString(
+                            R.string.RebirthProfile
+                        ) + rebirth.value.toString(),
+                        isChosen = rebirth.key.toString() == chosenColour.value.toString(),
+                        isSwitchEnabled = false
+                    )
+                    if (moon.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.MOONYES
+                                ),
+                                isChosen = moon.key.toString() == chosenItem.value.toString()
+                            )
+                        )
+                    } else {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.MOONNO
+                                ),
+                                isChosen = moon.key.toString() == chosenItem.value.toString()
+                            )
+                        )
+                    }
+                    if (star.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.STARYES
+                                ),
+                                isChosen = star.key.toString() == chosenItem.value.toString()
+                            )
+                        )
+                    } else {
+                        list.add(
+                            ShopModel(
+                                item = getString(
+                                    R.string.STARNO
+                                ),
+                                isChosen = star.key.toString() == chosenItem.value.toString()
+                            )
+                        )
+                    }
+                    adapter.submitList(list)
                 }
         }
     }
+
+    private fun setuserName(userName: String, chosen: String) {
+        binding.userName.text = userName
+        if (chosen == "green") {
+            binding.userName.setTextColor(Color.parseColor("#2DD2A2"))
+        }
+        else if (chosen == "yellow") {
+            binding.userName.setTextColor(Color.parseColor("#ecdc13"))
+        }
+        else if (chosen == "red") {
+            binding.userName.setTextColor(Color.parseColor("#D22D5D"))
+        }
+        else if (chosen == "pink") {
+            binding.userName.setTextColor(Color.parseColor("#FFC0CB"))
+        }
+    }
+
+    private fun getOthers() {
+        val list = arrayListOf<ShopModel>()
+        auth.currentUser?.let { user ->
+            db.reference.child("leaderboard").child(user.uid).get().addOnSuccessListener { others ->
+                val score = others.child("highscore")
+                val highscore = others.child("bestscore")
+                val name = others.child("name")
+                val chosenColour = others.child("shop").child("chosen_colour")
+                setUserName(name.value.toString(),chosenColour.value.toString())
+                list.add(
+                    ShopModel(
+                        item = getString(
+                            R.string.naming
+                        ) + name.value.toString(),
+                        isChosen = false,
+                        isSwitchEnabled = false
+                    )
+                )
+                list.add(
+                    ShopModel(
+                        item = getString(
+                            R.string.Cookkkies
+                        ) + score.value.toString(),
+                        isChosen = false,
+                        isSwitchEnabled = false
+                    )
+                )
+                list.add(
+                    ShopModel(
+                        item = getString(
+                            R.string.Highestt
+                        ) + highscore.value.toString(),
+                        isChosen = false,
+                        isSwitchEnabled = false
+                    )
+                )
+                getColourShop(list)
+            }
+        }
+    }
+
+    private fun getShopData() {
+        getOthers()
+    }
+}

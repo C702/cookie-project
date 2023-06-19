@@ -36,8 +36,217 @@ class OtherProfilePage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //getInfo()
         initrecyclerview()
-        getShopData()
+        getProfileOthers()
     }
+
+    private fun shopData(otherList: ArrayList<OtherProfileModel>) {
+        val list = arrayListOf<OtherProfileModel>()
+        otherList.forEach {
+            list.add(it)
+        }
+        db.reference.child("leaderboard").child(args.userId.toString()).child("shop").get()
+            .addOnSuccessListener { shop ->
+                    val green = shop.child("green")
+                    val red = shop.child("red")
+                    val yellow = shop.child("yellow")
+                    val pink = shop.child("pink")
+                    val adder = shop.child("adder")
+                    val vip = shop.child("vip")
+                    val chosenItem = shop.child("chosen_item")
+                    val rebirth = shop.child("rebirth")
+                    val moon = shop.child("moon")
+                    val star = shop.child("star")
+
+                    setIcon(chosenItem.value.toString())
+
+                    if (yellow.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.YELLOWYES
+                                )
+                            )
+                        )
+                    } else {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.YELLOWNO
+                                )
+                            )
+                        )
+                    }
+
+                    if (green.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.GREENYES
+                                )
+                            )
+                        )
+                    } else {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.GREENNO
+                                )
+                            )
+                        )
+                    }
+
+                    if (pink.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.PINKYES
+                                )
+                            )
+                        )
+                    } else {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.PINKNO
+                                )
+                            )
+                        )
+                    }
+
+                    if (red.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.REDYES
+                                )
+                            )
+                        )
+                    } else {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.REDNO
+                                )
+                            )
+                        )
+                    }
+
+                    if (vip.value.toString()
+                            .toInt() != 1
+                    ) {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.VIPYES
+                                )
+                            )
+                        )
+                    } else {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.VIPNO
+                                )
+                            )
+                        )
+                    }
+
+                    list.add(
+                        OtherProfileModel(
+                            item = getString(
+                                R.string.AdderProfile
+                            ) + adder.value.toString()
+                        )
+                    )
+                    OtherProfileModel(
+                        item = getString(
+                            R.string.RebirthProfile
+                        ) + rebirth.value.toString(),
+                    )
+                    if (moon.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.MOONYES
+                                ),
+                            )
+                        )
+                    } else {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.MOONNO
+                                )
+                            )
+                        )
+                    }
+                    if (star.value.toString()
+                            .toInt() > 0
+                    ) {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.STARYES
+                                )
+                            )
+                        )
+                    } else {
+                        list.add(
+                            OtherProfileModel(
+                                item = getString(
+                                    R.string.STARNO
+                                )
+                            )
+                        )
+                    }
+                    adapter.submitList(list)
+                }
+        }
+
+    private fun getProfileOthers() {
+        val list = arrayListOf<OtherProfileModel>()
+        db.reference.child("leaderboard").child(args.userId.toString()).get()
+            .addOnSuccessListener { others ->
+                val score = others.child("highscore")
+                val highscore = others.child("bestscore")
+                val name = others.child("name")
+                val chosenColour = others.child("shop").child("chosen_colour")
+                setUserName(name.value.toString(),chosenColour.value.toString())
+                list.add(
+                    OtherProfileModel(
+                        item = getString(
+                            R.string.naming
+                        ) + name.value.toString()
+                    )
+                )
+                list.add(
+                    OtherProfileModel(
+                        item = getString(
+                            R.string.Cookkkies
+                        ) + score.value.toString()
+                    )
+                )
+                list.add(
+                    OtherProfileModel(
+                        item = getString(
+                            R.string.Highestt
+                        ) + highscore.value.toString()
+                    )
+                )
+                shopData(list)
+            }
+        }
+    
 
     private fun setIcon(chosenIcon: String) {
         if (chosenIcon == "moon") {
@@ -57,326 +266,27 @@ class OtherProfilePage : Fragment() {
     ) {
         if (chosen == "green") {
             binding.userName.setTextColor(Color.parseColor("#2DD2A2"))
+            binding.titleOtherProfilePage.setTextColor(Color.parseColor("#2DD2A2"))
         } else if (chosen == "yellow") {
             binding.userName.setTextColor(Color.parseColor("#ecdc13"))
+            binding.titleOtherProfilePage.setTextColor(Color.parseColor("#ecdc13"))
         } else if (chosen == "red") {
             binding.userName.setTextColor(Color.parseColor("#D22D5D"))
+            binding.titleOtherProfilePage.setTextColor(Color.parseColor("#D22D5D"))
         } else if (chosen == "pink") {
             binding.userName.setTextColor(Color.parseColor("#FFC0CB"))
+            binding.titleOtherProfilePage.setTextColor(Color.parseColor("#FFC0CB"))
         }
         binding.userName.text = userName
+        binding.titleOtherProfilePage.text = getString(R.string.namingone)
+        binding.backButtonOtherProfile.setOnClickListener {
+            Navigation.findNavController(binding.root).navigate(R.id.action_otherProfilePage_to_home2)
+        }
     }
 
     private fun initrecyclerview() {
         adapter = OtherProfileRecyclerView(context, false)
         binding.otherProfilePageRW.layoutManager = LinearLayoutManager(context)
         binding.otherProfilePageRW.adapter = adapter
-    }
-
-    private fun getShopData() {
-        val list = arrayListOf<OtherProfileModel>()
-        db.reference.child("leaderboard").child(args.userId.toString()).child("highscore").get()
-            .addOnSuccessListener { cookie ->
-                db.reference.child("leaderboard").child(args.userId.toString()).child("name").get()
-                    .addOnSuccessListener { name ->
-                        db.reference.child("leaderboard").child(args.userId.toString())
-                            .child("bestscore")
-                            .get().addOnSuccessListener { best ->
-                                db.reference.child("leaderboard").child(args.userId.toString())
-                                    .child("shop").child("vip")
-                                    .get().addOnSuccessListener { vip ->
-                                        db.reference.child("leaderboard")
-                                            .child(args.userId.toString())
-                                            .child("shop").child("moon")
-                                            .get().addOnSuccessListener { moon ->
-                                                db.reference.child("leaderboard")
-                                                    .child(args.userId.toString())
-                                                    .child("shop").child("pink")
-                                                    .get().addOnSuccessListener { pink ->
-                                                        db.reference.child("leaderboard")
-                                                            .child(args.userId.toString())
-                                                            .child("shop").child("star")
-                                                            .get().addOnSuccessListener { star ->
-                                                                db.reference.child("leaderboard")
-                                                                    .child(args.userId.toString())
-                                                                    .child("shop").child("red")
-                                                                    .get()
-                                                                    .addOnSuccessListener { red ->
-                                                                        db.reference.child("leaderboard")
-                                                                            .child(args.userId.toString())
-                                                                            .child("shop")
-                                                                            .child("yellow")
-                                                                            .get()
-                                                                            .addOnSuccessListener { yellow ->
-                                                                                db.reference.child("leaderboard")
-                                                                                    .child(args.userId.toString())
-                                                                                    .child("shop")
-                                                                                    .child("rebirth")
-                                                                                    .get()
-                                                                                    .addOnSuccessListener { rebirth ->
-
-                                                                                        db.reference.child(
-                                                                                            "leaderboard"
-                                                                                        )
-                                                                                            .child(
-                                                                                                args.userId.toString()
-                                                                                            )
-                                                                                            .child("shop")
-                                                                                            .child("chosen_colour")
-                                                                                            .get()
-                                                                                            .addOnSuccessListener { colour ->
-
-                                                                                                db.reference.child(
-                                                                                                    "leaderboard"
-                                                                                                )
-                                                                                                    .child(
-                                                                                                        args.userId.toString()
-                                                                                                    )
-                                                                                                    .child(
-                                                                                                        "shop"
-                                                                                                    )
-                                                                                                    .child(
-                                                                                                        "chosen_item"
-                                                                                                    )
-                                                                                                    .get()
-                                                                                                    .addOnSuccessListener { icon ->
-
-                                                                                                        db.reference.child(
-                                                                                                            "leaderboard"
-                                                                                                        )
-                                                                                                            .child(
-                                                                                                                args.userId.toString()
-                                                                                                            )
-                                                                                                            .child(
-                                                                                                                "shop"
-                                                                                                            )
-                                                                                                            .child(
-                                                                                                                "green"
-                                                                                                            )
-                                                                                                            .get()
-                                                                                                            .addOnSuccessListener { green ->
-                                                                                                                db.reference.child(
-                                                                                                                    "leaderboard"
-                                                                                                                )
-                                                                                                                    .child(
-                                                                                                                        args.userId.toString()
-                                                                                                                    )
-                                                                                                                    .child(
-                                                                                                                        "shop"
-                                                                                                                    )
-                                                                                                                    .child(
-                                                                                                                        "adder"
-                                                                                                                    )
-                                                                                                                    .get()
-                                                                                                                    .addOnSuccessListener { adder ->
-                                                                                                                        list.add(
-                                                                                                                            OtherProfileModel(
-                                                                                                                                item = getString(
-                                                                                                                                    R.string.naming
-                                                                                                                                ) + name.value.toString()
-                                                                                                                            )
-                                                                                                                        )
-                                                                                                                        list.add(
-                                                                                                                            OtherProfileModel(
-                                                                                                                                item = getString(
-                                                                                                                                    R.string.Cookkkies
-                                                                                                                                ) + cookie.value.toString()
-                                                                                                                            )
-                                                                                                                        )
-                                                                                                                        list.add(
-                                                                                                                            OtherProfileModel(
-                                                                                                                                item = getString(
-                                                                                                                                    R.string.Highestt
-                                                                                                                                ) + best.value.toString()
-                                                                                                                            )
-                                                                                                                        )
-                                                                                                                        list.add(
-                                                                                                                            OtherProfileModel(
-                                                                                                                                item = getString(
-                                                                                                                                    R.string.RebirthProfile
-                                                                                                                                ) + rebirth.value.toString()
-                                                                                                                            )
-                                                                                                                        )
-                                                                                                                        list.add(
-                                                                                                                            OtherProfileModel(
-                                                                                                                                item = getString(
-                                                                                                                                    R.string.AdderProfile
-                                                                                                                                ) + adder.value.toString()
-                                                                                                                            )
-                                                                                                                        )
-                                                                                                                        if (vip.value.toString()
-                                                                                                                                .toInt() != 1
-                                                                                                                        ) {
-                                                                                                                            list.add(
-                                                                                                                                OtherProfileModel(
-                                                                                                                                    item = getString(
-                                                                                                                                        R.string.VIPYES
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            )
-                                                                                                                        } else {
-                                                                                                                            list.add(
-                                                                                                                                OtherProfileModel(
-                                                                                                                                    item = getString(
-                                                                                                                                        R.string.VIPNO
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            )
-                                                                                                                            Log.d(
-                                                                                                                                "TAG",
-                                                                                                                                "getShopData: " + pink.value.toString()
-                                                                                                                                    .toInt()
-                                                                                                                            )
-                                                                                                                            if (pink.value.toString()
-                                                                                                                                    .toInt() > 0
-                                                                                                                            ) {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.PINKYES
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            } else {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.PINKNO
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                            if (green.value.toString()
-                                                                                                                                    .toInt() > 0
-                                                                                                                            ) {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.GREENYES
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            } else {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.GREENNO
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                            if (red.value.toString()
-                                                                                                                                    .toInt() > 0
-                                                                                                                            ) {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.REDYES
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            } else {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.REDYES
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                            if (moon.value.toString()
-                                                                                                                                    .toInt() > 0
-                                                                                                                            ) {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.MOONYES
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            } else {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.MOONNO
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                            if (yellow.value.toString()
-                                                                                                                                    .toInt() > 0
-                                                                                                                            ) {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.YELLOWYES
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            } else {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.YELLOWNO
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                            if (star.value.toString()
-                                                                                                                                    .toInt() > 0
-                                                                                                                            ) {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.STARYES
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            } else {
-                                                                                                                                list.add(
-                                                                                                                                    OtherProfileModel(
-                                                                                                                                        item = getString(
-                                                                                                                                            R.string.STARNO
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                            binding.titleOtherProfilePage.text =
-                                                                                                                                getString(
-                                                                                                                                    R.string.namingone
-                                                                                                                                )
-                                                                                                                            setUserName(
-                                                                                                                                name.value.toString(),
-                                                                                                                                colour.value.toString()
-                                                                                                                            )
-                                                                                                                            setIcon(
-                                                                                                                                icon.value.toString()
-                                                                                                                            )
-                                                                                                                            adapter.submitList(
-                                                                                                                                list
-                                                                                                                            )
-                                                                                                                        }
-
-                                                                                                                    }
-                                                                                                            }
-                                                                                                    }
-                                                                                            }
-                                                                                    }
-                                                                                binding.backButtonOtherProfile.setOnClickListener {
-                                                                                    Navigation.findNavController(
-                                                                                        binding.root
-                                                                                    )
-                                                                                        .navigate(R.id.action_otherProfilePage_to_home2)
-                                                                                }
-                                                                            }
-
-                                                                    }
-                                                            }
-                                                    }
-                                            }
-                                    }
-                            }
-                    }
-            }
     }
 }
